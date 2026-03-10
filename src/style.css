@@ -53,34 +53,6 @@ html {
   @apply text-3xl md:text-4xl font-bold text-center mb-10;
 }
 
-/* Slider Blob (Potato) styles */
-.blob-container {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1;
-  background-color: white;
-  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-  animation: blob-morph 8s ease-in-out infinite alternate;
-  overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  transform: translateZ(0); /* Safari fix for overflow hidden */
-}
-
-@keyframes blob-morph {
-  0% {
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-  }
-  34% {
-    border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
-  }
-  67% {
-    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
-  }
-  100% {
-    border-radius: 30% 70% 40% 60% / 50% 70% 30% 50%;
-  }
-}
-
 .hero-slide {
   position: absolute;
   top: 0;
@@ -112,33 +84,6 @@ html {
   }
   to {
     stroke-dashoffset: 0;
-  }
-}
-
-.animate-dot {
-  animation: travel-dot 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-@keyframes travel-dot {
-  0% {
-    left: 0%;
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  10% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  90% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    left: calc(
-      100% - 12px
-    ); /* 12px is the width of the dot to prevent overflow */
-    opacity: 0;
-    transform: scale(0.5);
   }
 }
 
@@ -190,38 +135,6 @@ html {
 }
 .delay-500 {
   transition-delay: 500ms;
-}
-
-/* Snowfall Animation for Icons */
-.falling-icon {
-  position: absolute;
-  top: -100px; /* Start slightly above the screen */
-  pointer-events: none; /* Let clicks pass through */
-  z-index: 1; /* Keep behind hero content */
-  animation-name: fall, sway;
-  animation-timing-function: linear, ease-in-out;
-  animation-iteration-count: infinite, infinite;
-  will-change: transform, opacity;
-  color: rgba(255, 255, 255, 0.15); /* White with low opacity by default */
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(-10vh) rotate(0deg);
-  }
-  100% {
-    transform: translateY(110vh) rotate(360deg);
-  }
-}
-
-@keyframes sway {
-  0%,
-  100% {
-    margin-left: 0;
-  }
-  50% {
-    margin-left: 50px;
-  }
 }
 
 /* Coverflow Carousel */
