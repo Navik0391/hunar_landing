@@ -1,0 +1,252 @@
+@import "tailwindcss";
+:root {
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #020617;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+  scrollbar-gutter: stable;
+}
+
+#app {
+  @apply min-w-80;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-4;
+}
+
+@theme {
+  --color-primary: #1bc162;
+  --color-secondary: #19213d;
+}
+
+@layer utilities {
+  .text-primary {
+    color: var(--color-primary);
+  }
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+}
+
+.title {
+  @apply text-3xl md:text-4xl font-bold text-center mb-10;
+}
+
+/* Slider Blob (Potato) styles */
+.blob-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: white;
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  animation: blob-morph 8s ease-in-out infinite alternate;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: translateZ(0); /* Safari fix for overflow hidden */
+}
+
+@keyframes blob-morph {
+  0% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+  34% {
+    border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+  }
+  67% {
+    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+  }
+  100% {
+    border-radius: 30% 70% 40% 60% / 50% 70% 30% 50%;
+  }
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.05);
+  transition:
+    opacity 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+}
+
+.animate-flow {
+  animation: flow 20s linear infinite;
+}
+
+@keyframes flow {
+  from {
+    stroke-dashoffset: 400;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-dot {
+  animation: travel-dot 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes travel-dot {
+  0% {
+    left: 0%;
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    left: calc(
+      100% - 12px
+    ); /* 12px is the width of the dot to prevent overflow */
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+/* Animations for Scroll Reveal */
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-bottom {
+  opacity: 0;
+  transition:
+    opacity 0.8s cubic-bezier(0.5, 0, 0, 1),
+    transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+  will-change: opacity, transform;
+}
+
+.reveal {
+  transform: translateY(30px) scale(0.95);
+}
+.reveal-left {
+  transform: translateX(-50px);
+}
+.reveal-right {
+  transform: translateX(50px);
+}
+.reveal-bottom {
+  transform: translateY(50px);
+}
+
+.reveal.active,
+.reveal-left.active,
+.reveal-right.active,
+.reveal-bottom.active {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+/* Staggered delays for items appearing in sequence */
+.delay-100 {
+  transition-delay: 100ms;
+}
+.delay-200 {
+  transition-delay: 200ms;
+}
+.delay-300 {
+  transition-delay: 300ms;
+}
+.delay-400 {
+  transition-delay: 400ms;
+}
+.delay-500 {
+  transition-delay: 500ms;
+}
+
+/* Snowfall Animation for Icons */
+.falling-icon {
+  position: absolute;
+  top: -100px; /* Start slightly above the screen */
+  pointer-events: none; /* Let clicks pass through */
+  z-index: 1; /* Keep behind hero content */
+  animation-name: fall, sway;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+  will-change: transform, opacity;
+  color: rgba(255, 255, 255, 0.15); /* White with low opacity by default */
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    margin-left: 0;
+  }
+  50% {
+    margin-left: 50px;
+  }
+}
+
+/* Coverflow Carousel */
+.coverflow-slide {
+  transform-origin: center center;
+  will-change: transform, opacity, filter;
+}
+
+.coverflow-center {
+  transform: translateX(0) scale(1) translateZ(0);
+  z-index: 30;
+  opacity: 1;
+  filter: brightness(1);
+}
+
+.coverflow-left {
+  transform: translateX(-55%) scale(0.85) translateZ(-50px);
+  z-index: 20;
+  opacity: 0.6;
+  filter: brightness(0.7);
+}
+
+.coverflow-right {
+  transform: translateX(55%) scale(0.85) translateZ(-50px);
+  z-index: 20;
+  opacity: 0.6;
+  filter: brightness(0.7);
+}

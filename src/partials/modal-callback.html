@@ -1,0 +1,116 @@
+<div
+  id="modal-callback"
+  class="fixed inset-0 z-50 hidden items-center justify-center pointer-events-none opacity-0 transition-all duration-300"
+>
+  <div
+    class="absolute inset-0 bg-secondary/60 backdrop-blur-sm modal-backdrop cursor-pointer pointer-events-auto"
+  ></div>
+
+  <div
+    class="relative w-full max-w-lg m-auto bg-white rounded-3xl p-8 md:p-10 shadow-2xl modal-content transform scale-95 transition-transform duration-300 mx-4 pointer-events-auto"
+  >
+    <button
+      class="close-modal cursor-pointer absolute top-5 right-5 text-gray-400 hover:text-gray-800 transition-colors w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 z-10"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-6 h-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+
+    <div class="mb-8 relative z-0">
+      <h2 class="text-3xl font-bold text-secondary mb-3">Оставить заявку</h2>
+      <p class="text-gray-500 text-lg leading-relaxed">
+        Заполните форму, и наша команда свяжется с вами в течение 10 минут.
+      </p>
+    </div>
+
+    <form class="flex flex-col gap-5" id="callback-form">
+      <div>
+        <label class="block text-sm font-semibold text-secondary mb-2"
+          >Ваше имя</label
+        >
+        <input
+          type="text"
+          placeholder="Введите ваше ФИО"
+          required
+          class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 placeholder:text-gray-400 bg-gray-50/50"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-secondary mb-2"
+          >Номер телефона</label
+        >
+        <input
+          type="tel"
+          placeholder="+992 XXX XX XX XX"
+          required
+          class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 placeholder:text-gray-400 bg-gray-50/50"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-secondary mb-2"
+          >Сообщение (необязательно)</label
+        >
+        <textarea
+          placeholder="Ваш комментарий или вопрос"
+          rows="3"
+          class="w-full px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 placeholder:text-gray-400 bg-gray-50/50 resize-none"
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="w-full py-4 mt-4 font-bold text-lg text-white bg-primary rounded-xl cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/30 active:scale-100 active:shadow-none min-h-[60px] flex items-center justify-center"
+      >
+        Отправить заявку
+      </button>
+      <p class="text-xs text-center text-gray-400 mt-2">
+        Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+      </p>
+    </form>
+
+    <div
+      id="callback-success"
+      class="hidden absolute inset-0 bg-white rounded-3xl flex-col items-center justify-center p-8 md:p-10 text-center z-20"
+    >
+      <div
+        class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6 text-primary"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-10 h-10"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 13l4 4L19 7"
+          />
+        </svg>
+      </div>
+      <h3 class="text-3xl font-bold text-secondary mb-3">Заявка принята!</h3>
+      <p class="text-gray-500 text-lg mb-8">
+        Спасибо за обращение. Мы перезвоним вам в ближайшее время.
+      </p>
+      <button
+        type="button"
+        class="close-modal w-full py-4 font-bold text-lg text-secondary bg-gray-100 rounded-xl cursor-pointer transition-all hover:bg-gray-200 active:scale-95"
+      >
+        Закрыть окно
+      </button>
+    </div>
+  </div>
+</div>

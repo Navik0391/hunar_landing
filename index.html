@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hunar - Проверенные мастера рядом</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+      }
+      #splash-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #1bc162;
+        transition:
+          opacity 0.7s ease-in-out,
+          visibility 0.7s ease-in-out;
+      }
+      .splash-logo-container {
+        position: relative;
+        width: 8rem;
+        height: 8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .splash-logo-container .animation-round-border {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      @media (min-width: 768px) {
+        .splash-logo-container {
+          width: 15rem;
+          height: 15rem;
+        }
+      }
+      .splash-logo {
+        position: relative;
+        z-index: 10;
+        width: 15rem;
+        height: 15rem;
+        object-fit: contain;
+      }
+      @media (min-width: 768px) {
+        .splash-logo {
+          width: 7rem;
+          height: 7rem;
+        }
+      }
+      .splash-text {
+        margin-top: 1.5rem;
+        color: white;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .splash-hidden {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+      }
+
+      .animation-round-border {
+        position: absolute;
+        left: 140px;
+        top: 90px;
+        animation: 48s linear 0s infinite normal none running rotated;
+      }
+
+      @keyframes rotated {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <link href="/src/style.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <include src="src/partials/splash-screen.html"></include>
+    <div id="app">
+      <include src="src/partials/header.html"></include>
+      <main>
+        <include src="src/partials/hero.html"></include>
+        <include src="src/partials/popular-categories.html"></include>
+        <include src="src/partials/order-place.html"></include>
+        <include src="src/partials/download-app-banner.html"></include>
+        <include src="src/partials/trust.html"></include>
+        <include src="src/partials/how-to-become.html"></include>
+        <include src="src/partials/download-app.html"></include>
+      </main>
+      <include src="src/partials/footer.html"></include>
+      <include src="src/partials/modal-callback.html"></include>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
