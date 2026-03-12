@@ -251,6 +251,10 @@ function initCallbackModal() {
   const form = document.getElementById('callback-form');
   const successMessage = document.getElementById('callback-success');
   const header = document.getElementById('main-header');
+  const phoneInput = document.getElementById('callback-phone');
+  const submitBtn = document.getElementById('callback-submit-btn');
+  const btnText = document.getElementById('callback-btn-text');
+  const btnSpinner = document.getElementById('callback-btn-spinner');
   
   let isOpen = false;
 
@@ -306,18 +310,61 @@ function initCallbackModal() {
     backdrop.addEventListener('click', closeModal);
   }
   
-  // Перехват отправки формы (мокап)
+  // Маска для телефона (+992)
+  if (phoneInput) {
+    phoneInput.addEventListener('input', function (e) {
+      // Очищаем от всего кроме цифр
+      let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,2})(\d{0,3})(\d{0,2})(\d{0,2})/);
+      if (!x[1]) {
+        e.target.value = '';
+        return;
+      }
+      
+      let res = '';
+      if (x[1] === '992') {
+        res = '+992 ' + (x[2] ? x[2] + ' ' : '') + (x[3] ? x[3] + ' ' : '') + (x[4] ? x[4] + ' ' : '') + (x[5] ? x[5] : '');
+      } else {
+        res = '+' + x[1] + (x[2] ? ' ' + x[2] : '') + (x[3] ? ' ' + x[3] : '') + (x[4] ? ' ' + x[4] : '') + (x[5] ? ' ' + x[5] : '');
+      }
+      e.target.value = res.trim();
+    });
+
+    // Добавляем префикс при клике на пустое поле
+    phoneInput.addEventListener('focus', function(e) {
+      if (e.target.value === '') e.target.value = '+992 ';
+    });
+  }
+
+  // Перехват отправки формы (имитация запроса на сервер)
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      // Показываем сообщение об успехе плавно поверх формы
-      if (successMessage) {
-        successMessage.classList.remove('hidden');
-        successMessage.classList.add('flex');
-        requestAnimationFrame(() => {
-          successMessage.style.opacity = '1';
-        });
+      
+      // Включаем лоадер на кнопке
+      if (submitBtn && btnText && btnSpinner) {
+        submitBtn.disabled = true;
+        btnText.textContent = 'Отправка...';
+        btnSpinner.classList.remove('hidden');
       }
+
+      // Имитируем задержку сети сервера в 1.5 секунды
+      setTimeout(() => {
+        // Успех, показываем сообщение
+        if (successMessage) {
+          successMessage.classList.remove('hidden');
+          successMessage.classList.add('flex');
+          requestAnimationFrame(() => {
+            successMessage.style.opacity = '1';
+          });
+        }
+        
+        // Возвращаем кнопку в исходное состояние для следующего раза
+        if (submitBtn && btnText && btnSpinner) {
+          submitBtn.disabled = false;
+          btnText.textContent = 'Отправить заявку';
+          btnSpinner.classList.add('hidden');
+        }
+      }, 1500);
     });
   }
 }
